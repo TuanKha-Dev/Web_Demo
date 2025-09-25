@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Demo Business - Thiết kế • Tư vấn • Giới thiệu</title>
+  <meta name="description" content="Demo website business: Thiết kế, Tư vấn, Giới thiệu. Có form liên hệ và portfolio.">
+  <style>
+    :root{--brand:#0b74de;--muted:#6b7280;--bg:#f7f9fc;--card:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, Arial, sans-serif;line-height:1.5;color:#111;background:var(--bg)}
+    header{background:linear-gradient(90deg,rgba(11,116,222,.95),rgba(6,78,157,.95));color:#fff;padding:12px 20px;position:sticky;top:0;z-index:50}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .brand{font-weight:700;letter-spacing:.3px}
+    nav{display:flex;gap:18px;align-items:center}
+    .nav-right{margin-left:auto;display:flex;gap:12px}
+    .nav a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px}
+    .nav a:hover{background:rgba(255,255,255,.08)}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;padding:40px 0}
+    .hero h1{margin:0 0 12px;font-size:32px}
+    .hero p{margin:0 0 18px;color:var(--muted)}
+    .cta{display:inline-block;padding:10px 16px;border-radius:8px;background:var(--card);color:var(--brand);font-weight:600;text-decoration:none}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 24px rgba(10,20,40,.06)}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+    .service h3{margin:0 0 8px}
+    .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+    .portfolio img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    section{padding:40px 0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    footer{padding:24px 0;color:var(--muted);font-size:14px}
+    form input, form textarea, form button{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-bottom:10px}
+    form button{background:var(--brand);color:#fff;border:none}
+    /* Responsive */
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}.services{grid-template-columns:1fr}.portfolio{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
+    @media(max-width:560px){.portfolio{grid-template-columns:1fr}.nav{display:none}.mobile-nav-btn{display:inline-block}}
+    .mobile-nav-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,.12);padding:6px 8px;border-radius:8px;color:#fff}
+    /* Simple modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center}
+    .modal .modal-card{width:90%;max-width:520px}
+    .show{display:flex}
+    .pricing{display:flex;gap:12px}
+    .price-card{flex:1;padding:18px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef3ff}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex;align-items:center;gap:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="brand">BizCraft</div>
+        <div style="font-size:13px;color:#dbeafe">Thiết kế • Tư vấn • Triển khai</div>
+      </div>
+
+      <nav class="nav" style="margin-left:16px">
+        <a href="#home">Trang chủ</a>
+        <a href="#about">Giới thiệu</a>
+        <a href="#design">Thiết kế</a>
+        <a href="#consult">Tư vấn</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+
+      <div class="nav-right">
+        <button class="mobile-nav-btn" id="mobileBtn">Menu</button>
+        <a class="cta" href="#contact">Đặt lịch tư vấn</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero">
+      <div>
+        <h1>Giải pháp thiết kế & tư vấn cho doanh nghiệp nhỏ & startup</h1>
+        <p>Chúng tôi kết hợp tư duy chiến lược và thiết kế thực tế để tạo ra sản phẩm giúp tăng tương tác, chuyển đổi và thương hiệu cho bạn.</p>
+        <a href="#contact" class="cta">Nhận tư vấn miễn phí</a>
+
+        <div class="services" aria-label="Dịch vụ">
+          <div class="card service">
+            <h3>Thiết kế web</h3>
+            <p style="color:var(--muted)">Website chuẩn SEO, responsive, tối ưu tốc độ.</p>
+          </div>
+          <div class="card service">
+            <h3>Branding & Logo</h3>
+            <p style="color:var(--muted)">Xây dựng bộ nhận diện, guideline thương hiệu.</p>
+          </div>
+          <div class="card service">
+            <h3>Tư vấn chiến lược</h3>
+            <p style="color:var(--muted)">Kế hoạch marketing, tối ưu kênh bán hàng.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin-top:0">Báo giá nhanh</h3>
+        <div style="font-size:14px;color:var(--muted)">Gói cơ bản: <strong>5.000.000₫</strong> — Trang landing + cấu hình SEO cơ bản</div>
+        <div style="height:12px"></div>
+        <div style="font-size:14px;color:var(--muted)">Gói Pro: <strong>15.000.000₫</strong> — Website nhiều trang + tối ưu tốc độ</div>
+        <div style="height:16px"></div>
+        <a href="#contact" class="cta">Yêu cầu báo giá</a>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="card">
+        <h2>Giới thiệu</h2>
+        <div class="two-col" style="align-items:start">
+          <div>
+            <p>BizCraft là agency chuyên cung cấp giải pháp thiết kế & tư vấn cho doanh nghiệp vừa và nhỏ. Chúng tôi tập trung vào hiệu quả kinh doanh và trải nghiệm người dùng.</p>
+            <ul>
+              <li>Tầm nhìn: Giúp mọi doanh nghiệp có website chuyên nghiệp và tối ưu chi phí.</li>
+              <li>Sứ mệnh: Thiết kế có mục tiêu, tăng chuyển đổi và giữ chân khách hàng.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Đội ngũ</h4>
+            <p style="color:var(--muted)">Designer • Developer • Marketer • Project Manager</p>
+            <div style="height:10px"></div>
+            <h4>Quy trình làm việc</h4>
+            <ol style="color:var(--muted)">
+              <li>Khảo sát & phân tích</li>
+              <li>Thiết kế & phát triển</li>
+              <li>Kiểm thử & bàn giao</li>
+              <li>Hỗ trợ & bảo trì</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="design">
+      <h2>Thiết kế — Portfolio</h2>
+      <div class="portfolio">
+        <div class="card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Portfolio 1"><div style="padding-top:8px;font-weight:600">Website bán hàng</div><div style="color:var(--muted);font-size:13px">Tối ưu chuyển đổi</div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Portfolio 2"><div style="padding-top:8px;font-weight:600">Landing page sự kiện</div><div style="color:var(--muted);font-size:13px">Tăng đăng ký</div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Portfolio 3"><div style="padding-top:8px;font-weight:600">Logo & bộ nhận diện</div><div style="color:var(--muted);font-size:13px">Nhận diện chuyên nghiệp</div></div>
+      </div>
+
+      <div style="height:18px"></div>
+      <div class="card">
+        <h3>Gói dịch vụ thiết kế</h3>
+        <div class="pricing">
+          <div class="price-card">
+            <h4>Starter</h4>
+            <p style="color:var(--muted)">1 trang Landing, 3 section</p>
+            <p style="font-weight:700;">5.000.000₫</p>
+          </div>
+          <div class="price-card">
+            <h4>Business</h4>
+            <p style="color:var(--muted)">Website 5–8 trang, tối ưu SEO</p>
+            <p style="font-weight:700;">12.000.000₫</p>
+          </div>
+          <div class="price-card">
+            <h4>Enterprise</h4>
+            <p style="color:var(--muted)">Thiết kế & branding toàn diện</p>
+            <p style="font-weight:700;">Tùy theo yêu cầu</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="consult">
+      <div class="card">
+        <h2>Tư vấn</h2>
+        <p style="color:var(--muted)">Dịch vụ tư vấn chiến lược, marketing, tối ưu kênh bán hàng và tư vấn công nghệ phù hợp cho từng giai đoạn phát triển.</p>
+
+        <div class="two-col">
+          <div>
+            <h3>Quy trình tư vấn</h3>
+            <ol style="color:var(--muted)">
+              <li>Khảo sát hiện trạng</li>
+              <li>Đề xuất giải pháp</li>
+              <li>Thực thi & theo dõi</li>
+              <li>Đánh giá & tối ưu</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Case study ngắn</h3>
+            <p style="color:var(--muted)">Startup X tăng 45% doanh thu sau 3 tháng tối ưu funnel bán hàng kết hợp landing page mới.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card">
+        <h2>Liên hệ</h2>
+        <div class="two-col">
+          <div>
+            <p style="color:var(--muted)">Hãy để lại thông tin, chúng tôi sẽ liên hệ trong vòng 24 giờ làm việc.</p>
+            <form id="contactForm" onsubmit="submitForm(event)">
+              <input type="text" id="name" placeholder="Họ & tên" required>
+              <input type="email" id="email" placeholder="Email" required>
+              <input type="text" id="company" placeholder="Công ty (tuỳ chọn)">
+              <textarea id="message" rows="5" placeholder="Mô tả yêu cầu" required></textarea>
+              <button type="submit">Gửi yêu cầu</button>
+            </form>
+          </div>
+          <div>
+            <h4>Thông tin</h4>
+            <p style="color:var(--muted)">Email: info@yourbusiness.com<br>ĐT: +84 912 345 678<br>Địa chỉ: Hà Nội, Việt Nam</p>
+            <div style="height:8px"></div>
+            <h4>Giờ làm việc</h4>
+            <p style="color:var(--muted)">Thứ 2 – Thứ 6: 9:00 – 18:00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div>© 2025 BizCraft. All rights reserved.</div>
+        <div style="color:var(--muted)">Thiết kế • Tư vấn • Triển khai</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal success -->
+  <div class="modal" id="modal">
+    <div class="modal-card card">
+      <h3>Cảm ơn!</h3>
+      <p>Yêu cầu của bạn đã được gửi. Chúng tôi sẽ liên hệ sớm.</p>
+      <button onclick="closeModal()">Đóng</button>
+    </div>
+  </div>
+
+  <script>
+    function submitForm(e){
+      e.preventDefault();
+      // Ở demo này, chỉ hiển thị modal. Ở WordPress thực tế, bạn có thể gửi AJAX đến endpoint hoặc sử dụng plugin form.
+      document.getElementById('modal').classList.add('show');
+      document.getElementById('contactForm').reset();
+    }
+    function closeModal(){document.getElementById('modal').classList.remove('show')}
+
+    // Mobile menu (đơn giản)
+    document.getElementById('mobileBtn').addEventListener('click',function(){
+      const nav=document.querySelector('.nav');
+      if(nav.style.display==='flex'){nav.style.display='none'}else{nav.style.display='flex';nav.style.flexDirection='column'}
+    });
+  </script>
+</body>
+</html>
